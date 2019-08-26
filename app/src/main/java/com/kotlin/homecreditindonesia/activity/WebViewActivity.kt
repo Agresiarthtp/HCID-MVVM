@@ -23,7 +23,7 @@ class WebViewActivity : AppCompatActivity() {
         webViewBinding.webviewHome.settings.javaScriptEnabled = true
         webViewBinding.webviewHome.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
-                view.loadUrl("javascript:alert('berhasil dimuat')")
+                view.loadUrl("javascript:alert('success loaded')")
             }
         }
         webViewBinding.webviewHome.webChromeClient = object : WebChromeClient() {

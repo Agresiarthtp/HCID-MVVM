@@ -18,8 +18,8 @@ import org.jetbrains.anko.startActivity
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: HomeViewModel
     private lateinit var mainBinding: ActivityMainBinding
-    private var adapterMenuAtas: AdapterMenuAtas? = null
-    private var adapterMenuBawah: AdapterMenuBawah? = null
+    private var mAdapterProduct: AdapterMenuAtas? = null
+    private var mAdapterArticle: AdapterMenuBawah? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,18 +40,18 @@ class MainActivity : AppCompatActivity() {
     private fun refreshPage() {
         viewModel.mLiveDataProduct.observe(this, Observer {
             it.let {
-                adapterMenuAtas = AdapterMenuAtas(it, ctx) {
+                mAdapterProduct = AdapterMenuAtas(it, ctx) {
                     startActivity<WebViewActivity>("data" to "${it.link}")
                 }
-                mainBinding.listMenuAtas.adapter = adapterMenuAtas
+                mainBinding.listMenuAtas.adapter = mAdapterProduct
             }
         })
         viewModel.mLiveDataArticle.observe(this, Observer {
             it.let {
-                adapterMenuBawah = AdapterMenuBawah(it, ctx) {
+                mAdapterArticle = AdapterMenuBawah(it, ctx) {
                     startActivity<WebViewActivity>("data" to "${it.link}")
                 }
-                mainBinding.listMenuBawah.adapter = adapterMenuBawah
+                mainBinding.listMenuBawah.adapter = mAdapterArticle
             }
         })
     }
