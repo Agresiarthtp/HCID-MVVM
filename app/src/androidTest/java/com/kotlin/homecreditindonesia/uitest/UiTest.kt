@@ -6,7 +6,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
-import com.kotlin.homecreditindonesia.MainActivity
+import com.kotlin.homecreditindonesia.activity.MainActivity
 import com.kotlin.homecreditindonesia.R
 import com.kotlin.homecreditindonesia.adapter.AdapterMenuAtas
 import org.junit.Rule
