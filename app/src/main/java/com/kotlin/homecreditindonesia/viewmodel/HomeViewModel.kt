@@ -41,7 +41,13 @@ class HomeViewModel : BaseViewModel() {
                 call: Call<ResponseProduct>,
                 response: Response<ResponseProduct>
             ) {
-                mLiveDataProduct.postValue(response.body()?.data?.get(0)?.items)
+                response.body()?.data.let {
+                    if (it?.get(0)?.section.equals("products")) {
+                        mLiveDataProduct.postValue(response.body()?.data?.get(0)?.items)
+                    } else {
+                        mLiveDataProduct.postValue(response.body()?.data?.get(1)?.items)
+                    }
+                }
                 setLoading(false)
             }
 
@@ -56,7 +62,13 @@ class HomeViewModel : BaseViewModel() {
                 call: Call<ResponseArticle>,
                 response: Response<ResponseArticle>
             ) {
-                mLiveDataArticle.postValue(response.body()?.data?.get(1)?.items)
+                response.body()?.data.let {
+                    if (it?.get(0)?.section.equals("articles")) {
+                        mLiveDataArticle.postValue(response.body()?.data?.get(0)?.items)
+                    } else {
+                        mLiveDataArticle.postValue(response.body()?.data?.get(1)?.items)
+                    }
+                }
             }
 
         })
