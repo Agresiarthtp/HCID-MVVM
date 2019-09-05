@@ -42,8 +42,8 @@ class HomeViewModel : BaseViewModel() {
                 response: Response<ResponseProduct>
             ) {
                 response.body()?.data.let {
-                    it?.forEachIndexed { index, dataItemProduct ->
-                        if (dataItemProduct?.section.equals("products")) {
+                    it?.forEachIndexed { index, value ->
+                        if (value?.section.equals("products")) {
                             mLiveDataProduct.postValue(response.body()?.data?.get(index)?.items)
                         }
                     }
@@ -62,8 +62,8 @@ class HomeViewModel : BaseViewModel() {
                 response: Response<ResponseArticle>
             ) {
                 response.body()?.data.let {
-                    it?.forEachIndexed { index, dataItemArticle ->
-                        if (dataItemArticle?.section.equals("articles")) {
+                    it?.forEachIndexed { index, value ->
+                        if (value?.section.equals("articles")) {
                             mLiveDataArticle.postValue(response.body()?.data?.get(index)?.items)
                         }
                     }
