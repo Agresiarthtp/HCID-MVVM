@@ -41,11 +41,9 @@ class HomeViewModel : BaseViewModel() {
                 call: Call<ResponseProduct>,
                 response: Response<ResponseProduct>
             ) {
-                response.body()?.data.let {
-                    it?.forEachIndexed { index, value ->
-                        if (value?.section.equals("products")) {
-                            mLiveDataProduct.postValue(response.body()?.data?.get(index)?.items)
-                        }
+                response.body()?.data?.forEachIndexed { index, value ->
+                    if (value?.section.equals("products")) {
+                        mLiveDataProduct.postValue(response.body()?.data?.get(index)?.items)
                     }
                 }
                 setLoading(false)
@@ -61,11 +59,9 @@ class HomeViewModel : BaseViewModel() {
                 call: Call<ResponseArticle>,
                 response: Response<ResponseArticle>
             ) {
-                response.body()?.data.let {
-                    it?.forEachIndexed { index, value ->
-                        if (value?.section.equals("articles")) {
-                            mLiveDataArticle.postValue(response.body()?.data?.get(index)?.items)
-                        }
+                response.body()?.data?.forEachIndexed { index, value ->
+                    if (value?.section.equals("articles")) {
+                        mLiveDataArticle.postValue(response.body()?.data?.get(index)?.items)
                     }
                 }
             }
