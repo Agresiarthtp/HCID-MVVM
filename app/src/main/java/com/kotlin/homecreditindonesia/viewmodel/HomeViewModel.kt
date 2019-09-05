@@ -42,15 +42,14 @@ class HomeViewModel : BaseViewModel() {
                 response: Response<ResponseProduct>
             ) {
                 response.body()?.data.let {
-                    for (i in it!!.indices) {
-                        if (it[i]?.section.equals("products")) {
-                            mLiveDataProduct.postValue(response.body()?.data?.get(i)?.items)
+                    it?.forEachIndexed { index, dataItemProduct ->
+                        if (dataItemProduct?.section.equals("products")) {
+                            mLiveDataProduct.postValue(response.body()?.data?.get(index)?.items)
                         }
                     }
                 }
                 setLoading(false)
             }
-
         })
 
         mCallArticle.enqueue(object : Callback<ResponseArticle> {
@@ -63,14 +62,13 @@ class HomeViewModel : BaseViewModel() {
                 response: Response<ResponseArticle>
             ) {
                 response.body()?.data.let {
-                    for (i in it!!.indices) {
-                        if (it[i]?.section.equals("articles")) {
-                            mLiveDataArticle.postValue(response.body()?.data?.get(i)?.items)
+                    it?.forEachIndexed { index, dataItemArticle ->
+                        if (dataItemArticle?.section.equals("articles")) {
+                            mLiveDataArticle.postValue(response.body()?.data?.get(index)?.items)
                         }
                     }
                 }
             }
-
         })
     }
 }
