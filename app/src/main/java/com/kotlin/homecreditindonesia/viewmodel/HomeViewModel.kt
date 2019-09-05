@@ -42,10 +42,10 @@ class HomeViewModel : BaseViewModel() {
                 response: Response<ResponseProduct>
             ) {
                 response.body()?.data.let {
-                    if (it?.get(0)?.section.equals("products")) {
-                        mLiveDataProduct.postValue(response.body()?.data?.get(0)?.items)
-                    } else {
-                        mLiveDataProduct.postValue(response.body()?.data?.get(1)?.items)
+                    for (i in it!!.indices) {
+                        if (it[i]?.section.equals("products")) {
+                            mLiveDataProduct.postValue(response.body()?.data?.get(i)?.items)
+                        }
                     }
                 }
                 setLoading(false)
@@ -63,10 +63,10 @@ class HomeViewModel : BaseViewModel() {
                 response: Response<ResponseArticle>
             ) {
                 response.body()?.data.let {
-                    if (it?.get(0)?.section.equals("articles")) {
-                        mLiveDataArticle.postValue(response.body()?.data?.get(0)?.items)
-                    } else {
-                        mLiveDataArticle.postValue(response.body()?.data?.get(1)?.items)
+                    for (i in it!!.indices) {
+                        if (it[i]?.section.equals("articles")) {
+                            mLiveDataArticle.postValue(response.body()?.data?.get(i)?.items)
+                        }
                     }
                 }
             }
