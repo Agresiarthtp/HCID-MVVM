@@ -29,10 +29,7 @@ class HomeViewModel : BaseViewModel() {
 
     private fun getData(api: RestApi) {
         setLoading(true)
-        val mCallProduct = api.getDataProduct()
-        val mCallArticle = api.getDataArticle()
-
-        mCallProduct.enqueue(object : Callback<ResponseProduct> {
+        api.getDataProduct().enqueue(object : Callback<ResponseProduct> {
             override fun onFailure(call: Call<ResponseProduct>, t: Throwable) {
                 setLoading(false)
             }
@@ -50,7 +47,7 @@ class HomeViewModel : BaseViewModel() {
             }
         })
 
-        mCallArticle.enqueue(object : Callback<ResponseArticle> {
+        api.getDataArticle().enqueue(object : Callback<ResponseArticle> {
             override fun onFailure(call: Call<ResponseArticle>, t: Throwable) {
 
             }
